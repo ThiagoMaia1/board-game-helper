@@ -1,12 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import Dice from './components/Dice/Dice';
+import LifeBar from './components/LifeBar/LifeBar';
+import PositionMarker from './components/PositionMarker/PositionMarker';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Dice/>
+      <LifeBar/>
+      <PositionMarker/>
     </View>
   );
 }
@@ -14,8 +17,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: 'green',
   },
 });
