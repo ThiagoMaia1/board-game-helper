@@ -1,15 +1,12 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { View, Image, StyleSheet, Text } from 'react-native';
 import GameCharacter from '../../models/character';
-import { GamePositionContext } from '../../provider/GamePositionProvider';
 import ItemImage from '../Item/ItemImage';
 
 
-function CharacterTile({character} : {character ?: GameCharacter}) {
-
+function CharacterTile({character, holdingItem = false} : {character : GameCharacter, holdingItem ?: boolean}) {
+    
     let [showInfo, setShowInfo] = useState(false);
-    let contextCharacter = useContext(GamePositionContext).character;
-    if (character === undefined) character = contextCharacter;
 
     return (
         <View style={styles.characterContainer} onTouchEnd={() => setShowInfo(s => !s)}>
@@ -25,9 +22,14 @@ function CharacterTile({character} : {character ?: GameCharacter}) {
                 </View>
             }
             <View style={styles.imageContainer}>
+                {!holdingItem ? null 
+                 : <ItemImage item={character.exclusiveItemName} 
+                              style={[styles.itemImage, {position: 'absolute', zIndex: 100}]}
+                   />    
+                }
                 <Image source={require(`../../assets/characters/${character.name}.png`)} 
                     style={styles.image}
-                    />
+                />
             </View>
         </View>
     )
@@ -38,10 +40,7 @@ export default CharacterTile;
 const styles = StyleSheet.create({
     characterContainer: {
         backgroundColor: 'white',
-        borderWidth: 3,
-        flex: 0,
-        height: '100%',
-        width: '100%',
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'space-evenly',
     },
@@ -58,9 +57,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         alignItems: 'center',
     },
-    selectedCharacter: {
-        borderColor: 'green',
-    },
     imageContainer: {
         width: '60%',
         height: '60%',
@@ -72,7 +68,7 @@ const styles = StyleSheet.create({
         resizeMode: 'contain'
     },
     itemImage: {
-        width: 80, 
-        height: 80,
+        width: 50, 
+        height: 50,
     }
 })

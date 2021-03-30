@@ -27,12 +27,13 @@ function CharacterSelection({hideCharacterSelecion} : {hideCharacterSelecion : (
     let [characterIndex, setCharacterIndex] = useState(0);
     const tileDimensions = useProportionalDimensions();
     const { defineCharacter } = useContext(GamePositionContext); 
+    const {height, width} = useWindowDimensions();
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, {height, width}]}>
             <View style={styles.listContainer}>
                 {characters.map((c, i) => 
-                    <View onTouchEnd={() => setCharacterIndex(i)} style={[
+                    <View key={c.name} onTouchEnd={() => setCharacterIndex(i)} style={[
                         styles.characterContainer, 
                         tileDimensions,
                         characterIndex === i ? styles.selectedCharacter : null,
@@ -44,6 +45,7 @@ function CharacterSelection({hideCharacterSelecion} : {hideCharacterSelecion : (
             <CustomButton label='Confirmar' onPress={() => {
                 defineCharacter(characters[characterIndex]);
                 hideCharacterSelecion();
+                console.log('oi')
             }}/>
         </View>
     )
@@ -55,8 +57,7 @@ const styles = StyleSheet.create({
     container: {
         position: 'absolute',
         flex: 0,
-        height: 700,
-        width: 500,
+        backgroundColor: 'green',
     },
     listContainer: {
         flexWrap: 'wrap',
@@ -69,8 +70,10 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         height: '100%',
         width: '100%',
+        borderWidth: 5,
+        borderColor: 'transparent',
     },
     selectedCharacter: {
-        borderColor: 'green',
+        borderColor: 'gray',
     }
 })

@@ -11,10 +11,10 @@ export default function App() {
   return (
     <GamePositionProvider>
       <View style={styles.container}>
-        <View style={showCharacterSelection ? null : {zIndex: -1}}>
-          <CharacterSelection hideCharacterSelecion={() => setShowCharacterSelection(false)}/>
-        </View>
-        <MainPage/> 
+        {showCharacterSelection
+          ? <CharacterSelection hideCharacterSelecion={() => setShowCharacterSelection(false)}/>
+          : <MainPage/> 
+        }
       </View>
     </GamePositionProvider>
   );
@@ -23,6 +23,5 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'green',
   },
 });

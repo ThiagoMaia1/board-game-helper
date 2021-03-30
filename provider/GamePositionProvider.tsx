@@ -1,36 +1,43 @@
 import React, { createContext, ReactNode, useReducer } from "react";
 import GameCharacter from "../models/character";
 import {characters} from "../models/character";
-import {items} from "../models/item";
+// import {items} from "../models/item";
 
-interface GamePosition {
-    tile : number,
-    lane : number,
-    chapter : number,
-    character : GameCharacter,
-    items : Array<keyof typeof items>,
-    moveTile : (offset : number) => void,
-    moveLane : (offset : number) => void,
-    defineCharacter : (character : GameCharacter) => void,
-}
+// interface GamePosition {
+//     tile : number,
+//     lane : number,
+//     chapter : number,
+//     character : GameCharacter,
+//     holdingItem : boolean,
+//     // items : Array<keyof typeof items>,
+//     moveTile : (offset : number) => void,
+//     moveLane : (offset : number) => void,
+//     defineCharacter : (character : GameCharacter) => void,
+//     changeItemStatus : (holdingItem : boolean) => void,
+// }
 
 const initialGamePosition = {
     tile: 0,
     lane: 0,
     chapter: 0,
     character: characters[0],
-    items: [],
-    moveTile: () => void 0, 
-    moveLane: () => void 0,
-    defineCharacter: (_ : GameCharacter) => void 0,
-} as GamePosition;
+    holdingItem: false,    
+    // items: [],
+    moveTile: (_ : number) : void => void 0, 
+    moveLane: (_ : number) : void => void 0,
+    defineCharacter: (_ : GameCharacter) : void => void 0,
+    toggleHoldingItem: () : void => void 0,
+};
+
+type GamePosition = typeof initialGamePosition;
 
 class Action {
     constructor(
-        public type : 'move-tile' | 'move-lane' | 'define-character',
+        public type : 'move-tile' | 'move-lane' | 'define-character' | 'toggle-holding-item',        
         public tileOffset = 0,
         public laneOffset = 0,
         public character ?: GameCharacter,
+        public holdingItem = false,
     ) {};
 };
 
@@ -61,6 +68,8 @@ function gamePositionReducer(state : GamePosition, action : Action) {
             return {...state, lane: state.lane + action.laneOffset};
         case 'define-character':
             return {...state, character: action.character as GameCharacter};
+        case 'toggle-holding-item':
+            return {...state, holdingItem: !state.holdingItem};
         default:
             return state;
     }
@@ -74,10 +83,11 @@ function GamePositionProvider({children} : {children : ReactNode}) {
     const [state, dispatch] = useReducer(gamePositionReducer, initialGamePosition);
 
     const moveTile = (tileOffset : number) => dispatch(new Action('move-tile', tileOffset));
-    const moveLane = (laneOffset : number) => dispatch(new Action('move-lane', 0, laneOffset));
-    const defineCharacter = (character : GameCharacter) => dispatch(new Action('define-character', 0, 0, character));
+    const moveLane = (laneOffset : number) => dispatch(new Action('move-lane', undefined, laneOffset));
+    const defineCharacter = (character : GameCharacter) => dispatch(new Action('define-character', undefined, undefined, character));
+    const toggleHoldingItem = () => dispatch(new Action('toggle-holding-item', undefined, undefined, undefined));
 
-    return <GamePositionContext.Provider value={{...state, moveTile, moveLane, defineCharacter}}>
+    return <GamePositionContext.Provider value={{...state, moveTile, moveLane, defineCharacter, toggleHoldingItem}}>
         {children}
     </GamePositionContext.Provider>
 }

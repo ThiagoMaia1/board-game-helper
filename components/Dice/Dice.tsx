@@ -13,7 +13,6 @@ function Dice() {
 
     let [values, setValues] = useState(Array<DieValue>(dieNumber).fill(initialValue));
     let { moveTile } = useContext(GamePositionContext);
-    console.log(useContext(GamePositionContext));
 
     const getTotal = () => values.reduce((res, v) => {
         res += v;
