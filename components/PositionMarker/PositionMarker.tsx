@@ -1,20 +1,19 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import { StyleSheet, View } from 'react-native';
+import { GamePositionContext } from '../../provider/GamePositionProvider';
 import CartesianBox from './CartesianBox';
+import LanePicker from './LanePicker';
 import Marker from './Marker';
 
 function PositionMarker() {
 
-    let [tile, setTile] = useState(0);
-    let [lane, setLane] = useState(0);
+    let {tile} = useContext(GamePositionContext);
 
     return (
         <View style={styles.container}>
             <Marker label='Casa' number={tile}/>
             <CartesianBox/>
-            <View style={styles.bottomMarker}>
-                <Marker label='Raia' number={lane}/>
-            </View>
+            <LanePicker/>
         </View>
     );
 }
@@ -28,8 +27,5 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-end',
         alignItems: 'center',
-    },
-    bottomMarker: {
-        marginRight: 15,
     }
 });

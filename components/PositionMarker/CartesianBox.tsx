@@ -7,7 +7,7 @@ function CartesianBox() {
     return (
         <View style={styles.container}>
             <Arrow direction={Direction.top}/>
-            <View style={styles.square}/>
+            {/* <View style={styles.square}/> */}
             <View style={styles.rightArrowContainer}>
                 <Arrow direction={Direction.right}/>
             </View>

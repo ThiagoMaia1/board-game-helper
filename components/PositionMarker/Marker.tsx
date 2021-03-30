@@ -5,7 +5,7 @@ function Marker({number, label}: {number : number, label : string}) {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.counter}>{number}</Text>
+            <Text style={styles.counter}>{number + 1}</Text>
             <Text style={styles.label}>{label}</Text>
         </View>
     );
