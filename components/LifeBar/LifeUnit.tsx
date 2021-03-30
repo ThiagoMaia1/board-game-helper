@@ -1,10 +1,11 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
 
-function LifeUnit({isActive, onPress} : {isActive : boolean, onPress: () => any}) {
+function LifeUnit({isActive, onPress, isBonus = false} 
+    : {isActive : boolean, onPress: () => any, isBonus : boolean}) {
 
     return (
-        <View style={[styles.container, styles[isActive ? 'active' : 'inactive']]} 
+        <View style={[styles.container, styles[isActive ? (isBonus ? 'bonusActive' : 'active') : 'inactive']]} 
             onTouchEnd={onPress}
         />
     )
@@ -24,5 +25,8 @@ const styles = StyleSheet.create({
     },
     inactive: {
         backgroundColor: '#555',
+    },
+    bonusActive: {
+        backgroundColor: 'blue'
     }
 })

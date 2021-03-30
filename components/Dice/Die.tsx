@@ -1,26 +1,26 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useState } from "react";
 import { View, StyleSheet } from "react-native";
 import DieSide, { DieValue } from "./DieSide";
 
 function Die({updateValues, addMethod, initialValue = 6 as DieValue} 
-    : {updateValues : (dieValue : DieValue) => void, addMethod : (method : () => void) => void, initialValue : DieValue}) {
+    : {updateValues : (dieValue : DieValue, rollingAll : boolean) => void, addMethod : (method : () => void) => void, initialValue : DieValue}) {
 
     const generateRandomValue = () => {
         let value = Math.ceil(Math.random()*6) as DieValue;
         return value;
     }
     let [value, setValue] = useState(initialValue);
-    const throwDie = () => {
+    const throwDie = (rollingAll = false) => {
         let value = generateRandomValue();
         setValue(value);
-        updateValues(value);
+        updateValues(value, rollingAll);
     }
 
     addMethod(throwDie);
 
     return (
-        <View onTouchStart={throwDie} style={styles.side}>
+        <View onTouchStart={() => throwDie()} style={styles.side}>
             <DieSide value={value}/>
         </View>
     );

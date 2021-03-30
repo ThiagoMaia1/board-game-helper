@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import Dice from './components/Dice/Dice';
-import LifeBar from './components/LifeBar/LifeBar';
-import PositionMarker from './components/PositionMarker/PositionMarker';
+import GamePositionProvider from './provider/GamePositionProvider';
+import CharacterSelection from './components/CharacterSelection/CharacterSelection';
+import MainPage from './components/MainPage/MainPage';
 
 export default function App() {
+
+  let [showCharacterSelection, setShowCharacterSelection] = useState(true);
+
   return (
-    <View style={styles.container}>
-      <Dice/>
-      <LifeBar/>
-      <PositionMarker/>
-    </View>
+    <GamePositionProvider>
+      <View style={styles.container}>
+        <View style={showCharacterSelection ? null : {zIndex: -1}}>
+          <CharacterSelection hideCharacterSelecion={() => setShowCharacterSelection(false)}/>
+        </View>
+        <MainPage/> 
+      </View>
+    </GamePositionProvider>
   );
 }
 

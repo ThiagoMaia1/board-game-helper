@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { mapFixedNumberArray } from '../../constants/functions';
 import LifeUnit from './LifeUnit';
 
-function LifeBar() {
+function LifeBar({charBonusLifeUnits = 0}) {
 
     const baseLife = 16;
     let [life, setLife] = useState(baseLife);
@@ -11,8 +11,12 @@ function LifeBar() {
     return (
         <View style={styles.container}>
             {mapFixedNumberArray<JSX.Element>(
-                baseLife, 
-                i => <LifeUnit key={i} isActive={i < life} onPress={() => setLife(i+1)}/>
+                baseLife + charBonusLifeUnits, 
+                i => <LifeUnit key={i} 
+                               isActive={i < life} 
+                               onPress={() => setLife(i+1)}
+                               isBonus={i > baseLife - 1}
+                     />
             )}
         </View>
     )
