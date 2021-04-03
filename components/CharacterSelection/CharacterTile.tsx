@@ -5,14 +5,17 @@ import GameCharacter from '../../models/character';
 import ItemImage from '../Item/ItemImage';
 
 
-function CharacterTile({character, holdingItem = false, isSelected = false} 
-    : {character : GameCharacter, holdingItem ?: boolean, isSelected ?: boolean}) {
+function CharacterTile({character, holdingItem = false, isSelected = false, includeLabel = true} 
+    : {character : GameCharacter, holdingItem ?: boolean, isSelected ?: boolean, includeLabel ?: boolean}) {
     
     let [showInfo, setShowInfo] = useState(false);
-
+    let heightImage = (includeLabel ? 60 : 80) + '%';
+ 
     return (
         <View style={styles.characterContainer} onTouchEnd={() => setShowInfo(s => !s)}>
-            <Text style={styles.title}>{(isSelected ? '>' : '') + character.label}</Text>
+            {!includeLabel ? null 
+                : <Text style={styles.title}>{(isSelected ? '>' : '') + character.label}</Text>
+            }
             {!showInfo ? null :                
                 <View style={styles.infoBox}>
                     <View>
@@ -23,7 +26,7 @@ function CharacterTile({character, holdingItem = false, isSelected = false}
                     <Text style={styles.text}>{character.description}</Text>
                 </View>
             }
-            <View style={styles.imageContainer}>
+            <View style={{width: heightImage, height: heightImage}}>
                 {!holdingItem ? null 
                  : <ItemImage item={character.exclusiveItem} 
                               style={[styles.itemImage, {position: 'absolute', zIndex: 100}]}
@@ -59,10 +62,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         alignItems: 'center',
         padding: 5,
-    },
-    imageContainer: {
-        width: '60%',
-        height: '60%',
     },
     image: {
         flex: 1,

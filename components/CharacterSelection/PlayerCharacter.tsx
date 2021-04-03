@@ -12,7 +12,7 @@ function PlayerCharacter() {
     return (
         <View style={[{maxWidth: height/2}, styles.container]}>
             <View style={{minWidth: 140, height: 110, marginLeft: 10}}>
-                <CharacterTile character={character} holdingItem={holdingItem}/>
+                <CharacterTile character={character} holdingItem={holdingItem} includeLabel={false}/>
             </View>
             <View style={styles.buttonContainer}>
                 <CustomButton label={holdingItem ? 'Usar Item' : 'Guardar Item'} 
