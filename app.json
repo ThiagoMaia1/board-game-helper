@@ -4,9 +4,9 @@
     "slug": "jogo-pezao",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/characters/physician.png",
+    "icon": "./assets/characters/lucky.png",
     "splash": {
-      "image": "./assets/characters/physician.png",
+      "image": "./assets/characters/lucky.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -21,12 +21,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/characters/physician.png",
+        "foregroundImage": "./assets/characters/lucky.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
-      "favicon": "./assets/characters/physician.png"
+      "favicon": "./assets/characters/lucky.png"
     }
   }
 }

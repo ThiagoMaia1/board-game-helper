@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { ImageBackground, StyleSheet, View } from 'react-native';
 import GameStateProvider from './provider/GameStateProvider';
 import CharacterSelection from './components/CharacterSelection/CharacterSelection';
 import MainPage from './components/MainPage/MainPage';
@@ -13,19 +13,21 @@ export default function App() {
   if (!isLoadingComplete) return null;
   return (
     <GameStateProvider>
-      <View style={styles.container}>
-        {showCharacterSelection
-          ? <CharacterSelection hideCharacterSelecion={() => setShowCharacterSelection(false)}/>
-          : <MainPage/> 
-        }
-      </View>
+      <ImageBackground source={require('./assets/WoodTexture.png')} resizeMode={'repeat'}>
+        <View style={styles.container}>
+          {showCharacterSelection
+            ? <CharacterSelection hideCharacterSelecion={() => setShowCharacterSelection(false)}/>
+            : <MainPage/> 
+          }
+        </View>
+      </ImageBackground>
     </GameStateProvider>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'rgb(90, 200, 90)',
+    backgroundColor: 'rgba(139, 69, 19, 0.8)',
     flex: 1,
   },
 });

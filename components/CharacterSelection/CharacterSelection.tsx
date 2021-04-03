@@ -62,9 +62,8 @@ export default CharacterSelection;
 
 const styles = StyleSheet.create({
     container: {
-        position: 'absolute',
-        flex: 0,
-        backgroundColor: 'rgb(90, 200, 90)',
+        // position: 'absolute',
+        // backgroundColor: 'rgb(90, 200, 90)',
     },
     listContainer: {
         flexWrap: 'wrap',
