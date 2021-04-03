@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         // marginRight: 18,
         flexDirection: 'row',
         flexWrap: 'wrap',
-        marginTop: 10,
+        marginBottom: 10,
         marginRight: 20,
         alignItems: 'center',
         alignContent: 'center',
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         padding: 5,
-        width: 130,
+        width: 115,
         marginLeft: 10,
     }
 });

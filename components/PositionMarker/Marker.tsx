@@ -16,7 +16,7 @@ export default Marker;
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 20,
+        marginTop: 13,
     },
     counter: {
         width: 65, 

@@ -40,8 +40,8 @@ const styles = StyleSheet.create({
         position: 'absolute',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        bottom: 20,
+        bottom: 10,
         width: '100%',
-        paddingHorizontal: 20,       
+        paddingHorizontal: 10,       
     }
 })

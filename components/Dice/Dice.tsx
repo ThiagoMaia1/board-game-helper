@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, useWindowDimensions } from 'react-native';
 import Text from '../Text/Text';
 import { mapFixedNumberArray } from '../../constants/functions';
 import { GameStateContext } from '../../provider/GameStateProvider';
@@ -14,6 +14,8 @@ function Dice() {
 
     let [values, setValues] = useState(Array<DieValue>(dieNumber).fill(initialValue));
     let { moveTile } = useContext(GameStateContext);
+    let {height, width} = useWindowDimensions();
+    let isVertical = height > width;
 
     const getTotal = () => values.reduce((res, v) => {
         res += v;
@@ -26,7 +28,7 @@ function Dice() {
     // const rollAll = () => childrenMethods.forEach(m => m(true));
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, {marginRight: isVertical ? 0 : 18}]}>
             <View style={styles.diceContainer}>
                 {mapFixedNumberArray<JSX.Element>(dieNumber, i =>
                     <View key={i} style={i === 0 ? styles.dieContainer : null} onTouchEndCapture={i === 1 ? () => childrenMethods[0](true) : void 0}>
@@ -50,7 +52,7 @@ export default Dice;
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
-        marginRight: 18,
+        marginBottom: 10,
     },
     diceContainer: {
         width: '100%',
@@ -63,6 +65,6 @@ const styles = StyleSheet.create({
         marginRight: 12,
     },
     total: {
-        fontSize: 13,
+        fontSize: 12,
     }
 })

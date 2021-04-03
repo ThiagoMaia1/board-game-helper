@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: 10,
-        marginRight: 20
+        marginBottom: 10,
+        marginRight: 15
     }
 });

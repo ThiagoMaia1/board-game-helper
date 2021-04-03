@@ -31,6 +31,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#222',
         flexDirection: 'row',
         alignSelf: 'flex-start',
-        marginTop: 8,
+        marginBottom: 10,
     }
 })

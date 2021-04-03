@@ -17,18 +17,16 @@ function MainPage() {
     return (
         <>
             <View style={{height}}>
-                <ScrollView>
-                    <View style={styles.container}>
-                        {!chapterHistoryIsVisible ? null 
-                            : <ChapterHistory/>
-                        }
-                        <Dice/>
-                        <LifeBar/>
-                        <PlayerCharacter/>
-                        <PositionMarker/>
-                        <ChapterList/>
-                    </View>
-                </ScrollView>
+                <View style={styles.container}>
+                    {!chapterHistoryIsVisible ? null 
+                        : <ChapterHistory/>
+                    }
+                    <Dice/>
+                    <LifeBar/>
+                    <PlayerCharacter/>
+                    <PositionMarker/>
+                    <ChapterList/>
+                </View>
             </View>
             <UndoRedoButtons/>
         </>
@@ -42,6 +40,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-evenly',
+        alignContent: 'space-between',
         padding: 10,
         alignItems: 'center',
     },

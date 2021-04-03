@@ -6,7 +6,7 @@ function CustomButton({label, onPress} : {label : string, onPress : () => any}) 
 
     return (
         <Pressable onPress={onPress} style={styles.button}>
-            <Text style={styles.label}>{label}</Text>
+            <Text style={styles.label} textBreakStrategy={'balanced'}>{label}</Text>
         </Pressable>
     )
 }

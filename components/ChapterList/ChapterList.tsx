@@ -22,8 +22,8 @@ export default ChapterList;
 
 const styles = StyleSheet.create({
     container: {
+        marginBottom: 10,
         maxHeight: 300,
-        maxWidth: 300,
         backgroundColor: 'white',
         padding: 5,
     },
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     },
     text: {
         padding: 5,
-        fontSize: 13,
+        fontSize: 12,
         paddingRight: 10,
     }
 });
