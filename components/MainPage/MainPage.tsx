@@ -1,22 +1,26 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import ChapterList from '../ChapterList/ChapterList';
 import Dice from '../Dice/Dice';
 import LifeBar from '../LifeBar/LifeBar';
 import PositionMarker from '../PositionMarker/PositionMarker';
 import PlayerCharacter from '../CharacterSelection/PlayerCharacter';
 import { View, StyleSheet } from 'react-native';
+import { GameStateContext } from '../../provider/GameStateProvider';
+import ChapterHistory from '../ChapterList/ChapterHistory';
 
-interface Props {}
-
-function MainPage(props: Props) {
-    const {} = props
+function MainPage() {
+    
+    const {chapterHistoryIsVisible} = useContext(GameStateContext);
 
     return (
         <View style={styles.container}>
+            {!chapterHistoryIsVisible ? null 
+                : <ChapterHistory/>
+            }
             <Dice/>
             <LifeBar/>
-            <PositionMarker/>
             <PlayerCharacter/>
+            <PositionMarker/>
             <ChapterList/>
         </View>
     )
@@ -26,10 +30,10 @@ export default MainPage;
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'green',
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-evenly',
+        padding: 10,
         alignItems: 'center',
     },
 });

@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native';
+import Text from '../Text/Text';
 
 export enum Direction {
     top = 0,
@@ -13,7 +14,7 @@ function Arrow({direction} : {direction: Direction}) {
     const angle = direction;
     return (
         <View style={[styles.container, {transform: [{rotate: angle + 'deg'}]}]}>
-            <View style={styles.triangle}/>
+            <Text style={styles.triangle}>▲</Text>
             <View style={styles.line}/>
         </View>
     )
@@ -26,24 +27,30 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     triangle: {
-        width: 0,
-        height: 0,
-        backgroundColor: 'transparent',
-        borderStyle: 'solid',
-        borderLeftWidth: 9,
-        borderRightWidth: 9,
-        borderBottomWidth: 19,
-        borderLeftColor: 'transparent',
-        borderRightColor: 'transparent',
-        borderBottomColor: 'red',
-        margin: 0,
-        marginLeft: -6,
-        borderWidth: 0,
-        borderColor:"black"
+        // width: 0,
+        // height: 0,
+        color: 'red',
+        transform: [{translateX: -8}],
+        fontSize: 25,
+        lineHeight: 0,
+        zIndex: 10,
+        // textAlign: 'center',
+        // position: 'absolute',
+        // borderStyle: 'solid',
+        // borderLeftWidth: 9,
+        // borderRightWidth: 9,
+        // borderBottomWidth: 19,
+        // borderLeftColor: 'transparent',
+        // borderRightColor: 'transparent',
+        // borderBottomColor: '#ff3300',
+        // margin: 0,
+        // marginLeft: -6,
+        // borderWidth: 0,
+        // borderColor:"black"
     },
     line: {
         width: 5,
-        height: 80,
+        height: 60,
         backgroundColor: 'black',
     }
 })

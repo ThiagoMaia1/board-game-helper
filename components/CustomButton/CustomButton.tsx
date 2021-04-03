@@ -1,5 +1,6 @@
 import React from 'react'
-import { Pressable, StyleSheet, Text } from 'react-native'
+import { Pressable, StyleSheet } from 'react-native'
+import Text from '../Text/Text';
 
 function CustomButton({label, onPress} : {label : string, onPress : () => any}) {
 
@@ -15,10 +16,12 @@ export default CustomButton
 const styles = StyleSheet.create({
     button: {
         backgroundColor: 'lightgray',
-        borderRadius: 8,
-        padding: 10,
+        // borderRadius: 8,
+        padding: 6,
     },
     label: {
-        fontSize: 20,
+        fontSize: 13,
+        textAlign: 'center',
+        flexWrap: 'wrap',
     }
 })

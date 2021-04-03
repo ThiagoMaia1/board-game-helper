@@ -1,11 +1,12 @@
 import React from 'react'
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import Text from '../Text/Text';
 
 function Marker({number, label}: {number : number, label : string}) {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.counter}>{number + 1}</Text>
+            <Text style={[styles.counter, label === 'Raia' ? {width: 40} : null]}>{number + 1}</Text>
             <Text style={styles.label}>{label}</Text>
         </View>
     );
@@ -18,15 +19,17 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     counter: {
-        width: 50, 
-        height: 50,
+        width: 65, 
+        height: 40,
         backgroundColor: 'white',
-        fontSize: 30,
-        borderRadius: 10,
+        fontSize: 18,
+        // borderRadius: 10,
         textAlign: 'center',
         lineHeight: 45,
+        marginBottom: 5,
     },
     label: {
         textAlign: 'center',
+        fontSize: 11,
     },
 });

@@ -1,11 +1,14 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, useWindowDimensions } from 'react-native'
 
 function LifeUnit({isActive, onPress, isBonus = false} 
     : {isActive : boolean, onPress: () => any, isBonus : boolean}) {
 
+    let {height, width} = useWindowDimensions();
+    const length = Math.min(height, width)*0.33;
+
     return (
-        <View style={[styles.container, styles[isActive ? (isBonus ? 'bonusActive' : 'active') : 'inactive']]} 
+        <View style={[{height: length, width: length*0.13}, styles.container, styles[isActive ? (isBonus ? 'bonusActive' : 'active') : 'inactive']]} 
             onTouchEnd={onPress}
         />
     )
@@ -15,10 +18,7 @@ export default LifeUnit
 
 const styles = StyleSheet.create({
     container: {
-        height: 100,
-        width: 20,
-        borderRadius: 8,
-        marginRight: 10,
+        marginRight: 4,
     },
     active: {
         backgroundColor: 'green'

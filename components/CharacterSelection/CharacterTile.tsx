@@ -1,33 +1,35 @@
 import React, { useState } from 'react'
-import { View, Image, StyleSheet, Text } from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
+import Text from '../Text/Text';
 import GameCharacter from '../../models/character';
 import ItemImage from '../Item/ItemImage';
 
 
-function CharacterTile({character, holdingItem = false} : {character : GameCharacter, holdingItem ?: boolean}) {
+function CharacterTile({character, holdingItem = false, isSelected = false} 
+    : {character : GameCharacter, holdingItem ?: boolean, isSelected ?: boolean}) {
     
     let [showInfo, setShowInfo] = useState(false);
 
     return (
         <View style={styles.characterContainer} onTouchEnd={() => setShowInfo(s => !s)}>
-            <Text style={styles.title}>{character.label}</Text>
+            <Text style={styles.title}>{(isSelected ? '>' : '') + character.label}</Text>
             {!showInfo ? null :                
                 <View style={styles.infoBox}>
                     <View>
-                        <Text>Item Exclusivo: {character.exclusiveItem.label}</Text>
-                        <Text>{character.exclusiveItem.description}</Text> 
-                        <ItemImage item={character.exclusiveItemName} style={styles.itemImage}/>
+                        <Text style={styles.text}>Item Exclusivo: {character.exclusiveItem.label}</Text>
+                        <Text style={styles.text}>{character.exclusiveItem.description}</Text> 
+                        <ItemImage item={character.exclusiveItem} style={styles.itemImage}/>
                     </View>
-                <Text>{character.description}</Text>
+                    <Text style={styles.text}>{character.description}</Text>
                 </View>
             }
             <View style={styles.imageContainer}>
                 {!holdingItem ? null 
-                 : <ItemImage item={character.exclusiveItemName} 
+                 : <ItemImage item={character.exclusiveItem} 
                               style={[styles.itemImage, {position: 'absolute', zIndex: 100}]}
                    />    
                 }
-                <Image source={require(`../../assets/characters/${character.name}.png`)} 
+                <Image source={character.imageRequired} 
                     style={styles.image}
                 />
             </View>
@@ -45,7 +47,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
     },
     title: {
-        fontSize: 25,
+        fontSize: 15,
         marginBottom: 15,
     },
     infoBox: {
@@ -56,6 +58,7 @@ const styles = StyleSheet.create({
         height: '100%',
         justifyContent: 'space-evenly',
         alignItems: 'center',
+        padding: 5,
     },
     imageContainer: {
         width: '60%',
@@ -70,5 +73,8 @@ const styles = StyleSheet.create({
     itemImage: {
         width: 50, 
         height: 50,
+    },
+    text: {
+        fontSize: 10,
     }
 })

@@ -1,5 +1,6 @@
 import React from 'react'
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, useWindowDimensions } from 'react-native';
+import Text from '../Text/Text';
 import { mapFixedNumberArray } from '../../constants/functions';
 
 // type Side = {
@@ -36,9 +37,11 @@ const sides : Array<Side> = [
 function DieSide({value} : {value : DieValue}) {
 
     const {points, color} = sides[value];
+    const {height, width} = useWindowDimensions();
+    const side = Math.min(height, width)*0.27;
     
     return (
-        <View style={styles.container}>
+        <View style={[{width: side, height: side}, styles.container]}>
             {mapFixedNumberArray<JSX.Element>(dieCorners, i => 
                 <View key={i+1} style={[
                     styles.pointContainer, 
@@ -53,10 +56,9 @@ function DieSide({value} : {value : DieValue}) {
 
 const styles = StyleSheet.create({
     container: {
-        width: 150,
-        height: 150,
         flexDirection: 'row',
         flexWrap: 'wrap',
+        // aspectRatio: 1,
     },
     pointContainer: {
         width: '33%',
@@ -66,7 +68,7 @@ const styles = StyleSheet.create({
     point: {
         height: '100%',
         width: '100%',
-        borderRadius: 100,
+        // borderRadius: 100,
     }
   });
 

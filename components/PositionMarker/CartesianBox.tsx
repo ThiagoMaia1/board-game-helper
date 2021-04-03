@@ -20,12 +20,12 @@ export default CartesianBox;
 const styles = StyleSheet.create({
     container: {
         marginLeft: 20,
-        width: 80,
+        width: 50,
     },
     rightArrowContainer: {
         position: 'absolute',
-        top: 52,
-        left: 45,
+        top: 43,
+        left: 22,
         // transform: [{
         //     translateY: -50,
         //     translateX: 170,
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         left: 20,
         top: 25,
-        borderRadius: 10,
+        // borderRadius: 10,
         position: 'absolute',
     }
 })

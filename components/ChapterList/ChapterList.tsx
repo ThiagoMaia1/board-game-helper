@@ -1,37 +1,39 @@
 import React, { useContext } from 'react'
-import { ScrollView, StyleSheet, Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import Text from '../Text/Text';
 import { mapFixedNumberArray } from '../../constants/functions';
-import { GamePositionContext, totalChapters } from '../../provider/GamePositionProvider';
+import { GameStateContext, totalChapters } from '../../provider/GameStateProvider';
 
 function ChapterList() {
 
-    const currentChapter = useContext(GamePositionContext).chapter;
+    const {chapter, toggleChapterHistory} = useContext(GameStateContext);
+
     return (
-        <ScrollView style={styles.scrollView}>
+        <View style={styles.container} onTouchEndCapture={toggleChapterHistory}>
             {mapFixedNumberArray<JSX.Element>(
                 totalChapters, 
-                i => <Text key={i} style={i === currentChapter ? styles.selected : null}>
-                    <Text style={styles.text}>Capítulo {i + 1}</Text>
-                </Text>
+                i => <Text key={i} style={[styles.text, i === chapter ? styles.selected : null]}>Capítulo {i + 1}</Text>
             )}
-        </ScrollView>   
+        </View>   
     );
 }
 
 export default ChapterList;
 
 const styles = StyleSheet.create({
-    scrollView: {
+    container: {
         maxHeight: 300,
-        width: 'min',
-        flex: 0,
+        maxWidth: 300,
         backgroundColor: 'white',
+        padding: 5,
     },
     selected: {
         backgroundColor: 'green',
         color: 'white'
     },
     text: {
-        fontSize: 25,
+        padding: 5,
+        fontSize: 13,
+        paddingRight: 10,
     }
 });
