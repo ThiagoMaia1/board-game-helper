@@ -16,7 +16,7 @@ const arrows : ArrowData[] = [
 
 function LanePicker() {
 
-    const { lane, moveLane } = useContext(GameStateContext);
+    const { present: {lane}, moveLane } = useContext(GameStateContext);
 
     function ArrowButton ({arrowData} : {arrowData : ArrowData}) {
         let nextLane = lane + arrowData.offset;

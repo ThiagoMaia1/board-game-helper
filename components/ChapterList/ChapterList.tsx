@@ -6,7 +6,7 @@ import { GameStateContext, totalChapters } from '../../provider/GameStateProvide
 
 function ChapterList() {
 
-    const {chapter, toggleChapterHistory} = useContext(GameStateContext);
+    const {present: {chapter}, toggleChapterHistory} = useContext(GameStateContext);
 
     return (
         <View style={styles.container} onTouchEndCapture={toggleChapterHistory}>

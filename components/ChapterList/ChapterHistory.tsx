@@ -6,7 +6,7 @@ import { chapters, GameStateContext } from '../../provider/GameStateProvider';
 
 function ChapterHistory() {
 
-    const {chapter, toggleChapterHistory} = useContext(GameStateContext);
+    const {present: {chapter}, toggleChapterHistory} = useContext(GameStateContext);
     const objIndex = Number(Object.keys(chapters)[chapter]) as keyof typeof chapters;
     const chapterDescription = chapters[objIndex];
     return (

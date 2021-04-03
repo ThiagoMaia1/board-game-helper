@@ -22,7 +22,7 @@ function useProportionalDimensions() {
 }
 
 
-function CharacterSelection({hideCharacterSelecion} : {hideCharacterSelecion : () => void}) {
+function CharacterSelection() {
 
     let [characterIndex, setCharacterIndex] = useState(0);
     const tileDimensions = useProportionalDimensions();
@@ -51,8 +51,6 @@ function CharacterSelection({hideCharacterSelecion} : {hideCharacterSelecion : (
             </View>
             <CustomButton label='Confirmar' onPress={() => {
                 defineCharacter(characters[characterIndex]);
-                hideCharacterSelecion();
-                console.log('oi')
             }}/>
         </View>
     )

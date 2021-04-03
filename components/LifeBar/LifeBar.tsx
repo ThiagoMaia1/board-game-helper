@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { StyleSheet, View } from 'react-native';
 import { mapFixedNumberArray } from '../../constants/functions';
+import { GameStateContext, baseLife } from '../../provider/GameStateProvider';
 import LifeUnit from './LifeUnit';
 
 function LifeBar({charBonusLifeUnits = 0}) {
 
-    const baseLife = 16;
-    let [life, setLife] = useState(baseLife);
+    let {present: {life}, setLife} = useContext(GameStateContext);
 
     return (
         <View style={styles.container}>
