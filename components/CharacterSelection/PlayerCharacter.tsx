@@ -7,10 +7,11 @@ import CharacterTile from './CharacterTile';
 function PlayerCharacter() {
 
     const { toggleHoldingItem, present: {holdingItem, character} } = useContext(GameStateContext);
-    const { height } = useWindowDimensions();
+    const { height, width } = useWindowDimensions();
+    const isVertical = height > width;
 
     return (
-        <View style={[{maxWidth: height/2}, styles.container]}>
+        <View style={[{maxWidth: height/2}, isVertical ? {flexDirection: 'row'} : null, styles.container]}>
             <View style={{minWidth: 140, height: 110, marginLeft: 10}}>
                 <CharacterTile character={character} holdingItem={holdingItem} includeLabel={false}/>
             </View>
@@ -28,10 +29,6 @@ export default PlayerCharacter;
 const styles = StyleSheet.create({
     container: {
         width: '100%',
-        // height: 150,
-        // marginRight: 18,
-        flexDirection: 'row',
-        flexWrap: 'wrap',
         marginBottom: 10,
         marginRight: 20,
         alignItems: 'center',
@@ -40,7 +37,7 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         padding: 5,
-        width: 115,
+        flex: 1,
         marginLeft: 10,
     }
 });

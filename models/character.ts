@@ -14,10 +14,10 @@ export default class GameCharacter {
 }
 
 export const characters : GameCharacter[] = [
-    new GameCharacter('physician', 'Clínico', 'life', 'BLAALLALAL', require('../assets/characters/physician.png')),
-    new GameCharacter('lucky', 'Sortudo', 'random', 'É um cachorro', require('../assets/characters/lucky.png')),
-    new GameCharacter('hooked', 'Fisgada', 'harpoon', 'Oi', require('../assets/characters/hooked.png')),
-    new GameCharacter('block', 'Bloque', 'shield', '', require('../assets/characters/block.png')),
-    new GameCharacter('torpedo', 'Torpedo', 'torpedo', '', require('../assets/characters/torpedo.png')),
-    new GameCharacter('winged', 'Alada', 'airplane', '', require('../assets/characters/winged.png')),
+    new GameCharacter('physician', 'Clínico', 'life', 'Um robô médico.', require('../assets/characters/physician.png')),
+    new GameCharacter('lucky', 'Sortudo', 'random', 'Um cachorro muito leal.', require('../assets/characters/lucky.png')),
+    new GameCharacter('hooked', 'Fisgada', 'harpoon', 'Maneja um arpão', require('../assets/characters/hooked.png')),
+    new GameCharacter('block', 'Bloque', 'shield', 'Um protetor com armadura anti-bomba', require('../assets/characters/block.png')),
+    new GameCharacter('torpedo', 'Torpedo', 'torpedo', 'Um lançador de mísseis', require('../assets/characters/torpedo.png')),
+    new GameCharacter('winged', 'Alada', 'airplane', 'Uma piloto muito sagaz', require('../assets/characters/winged.png')),
 ];

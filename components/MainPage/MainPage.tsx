@@ -37,10 +37,13 @@ export default MainPage;
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-evenly',
-        alignContent: 'space-between',
+        // alignContent: 'space-between',
+        height: '100%',
+        width: '100%',
         padding: 10,
         alignItems: 'center',
     },

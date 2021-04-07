@@ -3,12 +3,14 @@
     "name": "jogo-pezao",
     "slug": "jogo-pezao",
     "version": "1.0.0",
-    "orientation": "portrait",
     "icon": "./assets/characters/lucky.png",
     "splash": {
       "image": "./assets/characters/lucky.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
+    },
+    "androidStatusBar": {
+      "hidden": true
     },
     "updates": {
       "fallbackToCacheTimeout": 0

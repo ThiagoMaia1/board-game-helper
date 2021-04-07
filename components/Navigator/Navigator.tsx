@@ -9,7 +9,10 @@ export default function Navigator() {
   let {character} = useContext(GameStateContext).present;
 
   return (
-        <ImageBackground source={require('../../assets/WoodTexture.png')} resizeMode={'repeat'}>
+        <ImageBackground source={require('../../assets/WoodTexture.png')} 
+                         resizeMode={'repeat'} 
+                         style={{width: '100%', height: '100%'}}
+        >
             <View style={styles.container}>
                 {!character 
                     ? <CharacterSelection/>

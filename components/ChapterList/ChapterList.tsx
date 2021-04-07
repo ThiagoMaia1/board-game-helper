@@ -12,7 +12,7 @@ function ChapterList() {
         <View style={styles.container} onTouchEndCapture={toggleChapterHistory}>
             {mapFixedNumberArray<JSX.Element>(
                 totalChapters, 
-                i => <Text key={i} style={[styles.text, i === chapter ? styles.selected : null]}>Capítulo {i + 1}</Text>
+                i => <Text key={i} style={[styles.text, i === chapter ? styles.selected : styles.unselected]}>Capítulo {i + 1}</Text>
             )}
         </View>   
     );
@@ -31,9 +31,15 @@ const styles = StyleSheet.create({
         backgroundColor: 'green',
         color: 'white'
     },
+    unselected: {
+        backgroundColor: 'white',
+        color: 'black'
+    },
     text: {
-        padding: 5,
+        paddingLeft: 3.5,
+        paddingTop: 6,
+        paddingBottom: 2,
+        paddingRight: 8,
         fontSize: 12,
-        paddingRight: 10,
     }
 });

@@ -38,7 +38,7 @@ function DieSide({value} : {value : DieValue}) {
 
     const {points, color} = sides[value];
     const {height, width} = useWindowDimensions();
-    const side = Math.min(height, width)*0.27;
+    const side = Math.min(height, width)*0.25;
     
     return (
         <View style={[{width: side, height: side}, styles.container]}>

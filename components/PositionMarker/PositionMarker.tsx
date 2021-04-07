@@ -12,7 +12,7 @@ function PositionMarker() {
     return (
         <View style={styles.container}>
             <Marker label='Casa' number={tile}/>
-            <View style={{transform: [{scale: 0.7, translateX: 10}]}}>
+            <View style={{transform: [{scale: 0.7}, {translateX: 10}]}}>
                 <CartesianBox/>
             </View>
             <LanePicker/>
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 10,
+        marginTop: 10,
         marginRight: 15
     }
 });

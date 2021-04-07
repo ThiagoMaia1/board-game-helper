@@ -33,10 +33,8 @@ const styles = StyleSheet.create({
     side: {
         alignSelf: 'flex-start',
         backgroundColor: '#fff',
-        // borderRadius: 15,
         padding: 10,
         width: '100%',
-        height: '100%',
     },
   });
   

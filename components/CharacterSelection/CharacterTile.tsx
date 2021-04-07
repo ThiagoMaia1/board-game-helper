@@ -13,18 +13,21 @@ function CharacterTile({character, holdingItem = false, isSelected = false, incl
  
     return (
         <View style={styles.characterContainer} onTouchEnd={() => setShowInfo(s => !s)}>
-            {!includeLabel ? null 
-                : <Text style={styles.title}>{(isSelected ? '>' : '') + character.label}</Text>
-            }
             {!showInfo ? null :                
                 <View style={styles.infoBox}>
-                    <View>
-                        <Text style={styles.text}>Item Exclusivo: {character.exclusiveItem.label}</Text>
-                        <Text style={styles.text}>{character.exclusiveItem.description}</Text> 
-                        <ItemImage item={character.exclusiveItem} style={styles.itemImage}/>
+                    <View style={styles.itemInfo}>
+                        <Text style={[styles.text, {marginRight: 10}]}>Item:</Text>
+                        <View>
+                            <Text style={styles.text}>{character.exclusiveItem.label}</Text>
+                            <ItemImage item={character.exclusiveItem} style={styles.itemImage}/>
+                            <Text style={styles.text}>{character.exclusiveItem.description}</Text> 
+                        </View>
                     </View>
-                    <Text style={styles.text}>{character.description}</Text>
+                    <Text style={[styles.text, {width: '100%', textAlign: 'center'}]}>{character.description}</Text>
                 </View>
+            }
+            {!includeLabel ? null 
+                : <Text style={styles.title}>{(isSelected ? '>' : '') + character.label}</Text>
             }
             <View style={{width: heightImage, height: heightImage}}>
                 {!holdingItem ? null 
@@ -54,6 +57,7 @@ const styles = StyleSheet.create({
         marginBottom: 15,
     },
     infoBox: {
+        top: 0,
         position: 'absolute',
         backgroundColor: 'rgba(255, 255, 255, 0.8)',
         zIndex: 100,
@@ -63,11 +67,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 5,
     },
+    itemInfo: {
+        padding: 5,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-evenly',
+    },
     image: {
         flex: 1,
-        // width: undefined,
-        // height: undefined,
-        resizeMode: 'contain'
+        resizeMode: 'contain',
+        width: '100%',
+        height: '100%',
     },
     itemImage: {
         width: 50, 

@@ -3,7 +3,7 @@ import GameStateProvider from './provider/GameStateProvider';
 import Navigator from './components/Navigator/Navigator';
 import useCachedResources from './hooks/useCachedResources';
 
-export default function App() {
+function App() {
 
   let isLoadingComplete = useCachedResources();
 
@@ -14,3 +14,5 @@ export default function App() {
     </GameStateProvider>
   );
 }
+
+export default App;

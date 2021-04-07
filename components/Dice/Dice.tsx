@@ -53,9 +53,12 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         marginBottom: 10,
+        // flex: 0,
     },
     diceContainer: {
-        width: '100%',
+        flex: 0,
+        height: 'auto',
+        flexShrink: 1,
         alignSelf: 'flex-start',
         flexDirection: 'row',
         justifyContent: 'space-between',
