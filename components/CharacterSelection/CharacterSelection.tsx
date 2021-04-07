@@ -49,9 +49,11 @@ function CharacterSelection() {
                 }
                 )}
             </View>
-            <CustomButton label='Confirmar' onPress={() => {
-                defineCharacter(characters[characterIndex]);
-            }}/>
+            <View style={styles.buttonContainer}>
+                <CustomButton label='Confirmar' onPress={() => {
+                    defineCharacter(characters[characterIndex]);
+                }}/>
+            </View>
         </View>
     )
 }
@@ -60,18 +62,18 @@ export default CharacterSelection;
 
 const styles = StyleSheet.create({
     container: {
-        // position: 'absolute',
-        // backgroundColor: 'rgb(90, 200, 90)',
+        flex: 1,
+        justifyContent: 'space-evenly'
     },
     listContainer: {
         flexWrap: 'wrap',
         flexDirection: 'row',
-        height: '90%',
+        height: '86%',
         width: '100%',
+        paddingHorizontal: 10,
     },
     characterContainer: {
         padding: 5,
-        // borderRadius: 10,
         height: '100%',
         width: '100%',
         borderWidth: 5,
@@ -79,5 +81,9 @@ const styles = StyleSheet.create({
     },
     selectedCharacter: {
         borderColor: 'gray',
+    },
+    buttonContainer: {
+        width: '100%',
+        paddingHorizontal: '10%',
     }
 })

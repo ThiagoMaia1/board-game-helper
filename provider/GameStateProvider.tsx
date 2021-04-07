@@ -43,12 +43,12 @@ class GameAction {
 };
 
 export const chapters = {
-    0: `Era uma vez Um lugarzinho no meio do nada Com sabor de chocolate E cheiro de terra molhada Era uma vez A riqueza contra a simplicidade Uma mostrando pra outra Quem dava mais felicidade Pra gente ser feliz Tem que cultivar as nossas amizades Os amigos de verdade Pra gente ser feliz Tem que mergulhar na própria fantasia Na nossa liberdade Uma história de amor De aventura e de magia Só tem a ver Quem já foi criança um dia`,
-    25: 'História do capítulo 2',
-    50: 'História do capítulo 3',
-    75: 'História do capítulo 4',
-    100: 'História do capítulo 5',
-    125: 'História do capítulo 6',
+    0: "A frente foi criado um labirinto de lasers altamente potentes. Quem pode impedir que os feixes atinjam seus novos companheiros? Bloque!",
+    25: "Seis desconhecidos se encontram uma cidade fantasma. Sortudo decide se prevenir contra possíveis problemas que poderão surgir adiante.",
+    50: "Fisgada encontrou civis feitos de escravos. Ela precisa da equipe para resgatá-los e os guiar para o ponto de resgate.",
+    75: "Clínico encontra destroços de um avião militar. Por ali estão recursos para recarregar as energias, e curar as feridas dos colegas.",
+    100: "Um grande abismo se aproxima, para atravessar os civis, Plana precisa sacrificar suas energias em um grande salto.",
+    125: "O resgate está próximo, mas Torpedo descobre que os mercenários prepararam uma emboscada a frente. O conflito será inevitável!",
 };
 
 const tileIndexesThatChangeChapters = Object.keys(chapters).map(Number);

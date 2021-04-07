@@ -30,12 +30,7 @@ function CharacterTile({character, holdingItem = false, isSelected = false, incl
                 : <Text style={styles.title}>{(isSelected ? '>' : '') + character.label}</Text>
             }
             <View style={{width: heightImage, height: heightImage}}>
-                {!holdingItem ? null 
-                 : <ItemImage item={character.exclusiveItem} 
-                              style={[styles.itemImage, {position: 'absolute', zIndex: 100}]}
-                   />    
-                }
-                <Image source={character.imageRequired} 
+                <Image source={holdingItem ? character.imageEquippedRequired : character.imageRequired} 
                     style={styles.image}
                 />
             </View>
