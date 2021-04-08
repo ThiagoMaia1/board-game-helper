@@ -3,13 +3,14 @@ import { StyleSheet, View } from 'react-native';
 import Text from '../Text/Text';
 import { mapFixedNumberArray } from '../../constants/functions';
 import { GameStateContext, totalChapters } from '../../provider/GameStateProvider';
+import ChapterHistory from './ChapterHistory';
 
 function ChapterList() {
 
-    const {present: {chapter}, toggleChapterHistory} = useContext(GameStateContext);
+    const {gamePosition: {present: {chapter}}, updatePopup} = useContext(GameStateContext);
 
     return (
-        <View style={styles.container} onTouchEndCapture={toggleChapterHistory}>
+        <View style={styles.container} onTouchEndCapture={() => updatePopup(<ChapterHistory/>)}>
             {mapFixedNumberArray<JSX.Element>(
                 totalChapters, 
                 i => <Text key={i} style={[styles.text, i === chapter ? styles.selected : styles.unselected]}>Capítulo {i + 1}</Text>

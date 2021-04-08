@@ -6,7 +6,7 @@ import LifeUnit from './LifeUnit';
 
 function LifeBar({charBonusLifeUnits = 0}) {
 
-    let {present: {life}, setLife} = useContext(GameStateContext);
+    let {gamePosition: {present: {life}}, setLife} = useContext(GameStateContext);
 
     return (
         <View style={styles.container}>

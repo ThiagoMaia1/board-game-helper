@@ -7,7 +7,7 @@ import Marker from './Marker';
 
 function PositionMarker() {
 
-    let {tile} = useContext(GameStateContext).present;
+    let {tile} = useContext(GameStateContext).gamePosition.present;
 
     return (
         <View style={styles.container}>

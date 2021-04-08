@@ -6,7 +6,7 @@ import CustomButton from '../CustomButton/CustomButton';
 
 function UndoRedoButtons() {
 
-    const {undo, redo, past, future} = useContext(GameStateContext);
+    const {undo, redo, gamePosition: {past, future}} = useContext(GameStateContext);
     const buttons = [
         {label: '«', callback: undo, array: past},
         {label: '»', callback: redo, array: future},

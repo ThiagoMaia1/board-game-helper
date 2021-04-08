@@ -3,10 +3,11 @@ import { ImageBackground, StyleSheet, View } from 'react-native';
 import { GameStateContext } from '../../provider/GameStateProvider';
 import CharacterSelection from '../CharacterSelection/CharacterSelection';
 import MainPage from '../MainPage/MainPage';
+import Popup from '../Popup/Popup';
 
 export default function Navigator() {
 
-  let {character} = useContext(GameStateContext).present;
+  let {character} = useContext(GameStateContext).gamePosition.present;
 
   return (
         <ImageBackground source={require('../../assets/WoodTexture.png')} 
@@ -14,10 +15,11 @@ export default function Navigator() {
                          style={{width: '100%', height: '100%'}}
         >
             <View style={styles.container}>
-                {!character 
-                    ? <CharacterSelection/>
-                    : <MainPage/> 
-                }
+              <Popup/>
+              {!character 
+                  ? <CharacterSelection/>
+                  : <MainPage/> 
+              }
             </View>
         </ImageBackground>
     );

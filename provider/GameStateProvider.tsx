@@ -20,15 +20,22 @@ class UndoState<S> {
         public present: S,
         public past : Array<S> = [],
         public future : Array<S> = [],
+    ) {};    
+}
+
+class MainState {
+    constructor (
+        public gamePosition : UndoState<GameState>,
+        public popup : PopupState,     
         public moveTile = (_ : number) : void => void 0, 
         public moveLane = (_ : number) : void => void 0,
         public defineCharacter = (_ : GameCharacter) : void => void 0,
         public toggleHoldingItem = () : void => void 0,
-        public toggleChapterHistory = () : void => void 0,
         public setLife = (_ : number) : void => void 0,
         public undo = () : void => void 0,
         public redo = () : void => void 0,
-    ) {};    
+        public updatePopup = (_ : PopupContent) : void => void 0,
+    ) {};
 }
 
 class GameAction {
@@ -84,6 +91,31 @@ function gamePositionReducer(state : GameState = initialGameState, action ?: Gam
     }
 }
 type Action = {type : string};
+
+function CombineReducers(reducers : {[keyName : string] : (state : any, action : any) => typeof state}) {
+    return (state : any, action : any) =>
+        Object.keys(reducers).reduce((newState : {[keyName : string] : object}, key : keyof typeof reducers) => {
+            newState[key] = reducers[key](state[key], action);
+            return newState;
+        }, {}) as unknown as MainState;
+}
+
+type PopupContent = ReactNode;
+type PopupState = {content : PopupContent};
+type PopupAction = {type : 'update-popup', content : PopupContent}; 
+
+function PopupReducer(state : PopupState = initialPopupState, action ?: PopupAction) {
+
+    if (!action) return state;
+    if (action.type !== 'update-popup') return state; 
+    return {
+        ...state,
+        content: action.content,
+    }
+};
+
+const initialPopupState = {content: undefined};
+
 function undoReducer<S, A extends Action>(reducer : (state ?: S, action ?: A) => S) {
 
     return (state : UndoState<S>, action : A) => {
@@ -108,32 +140,42 @@ function undoReducer<S, A extends Action>(reducer : (state ?: S, action ?: A) =>
                 };
             }
             default:
-                return {
-                    ...state,
-                    past: [...past, present],
-                    present: reducer(state.present, action),
-                    future: []
-                }
+                let newPresent = reducer(state.present, action);
+                if (newPresent !== present)
+                    return {
+                        ...state,
+                        past: [...past, present],
+                        present: newPresent,
+                        future: []
+                    }
+                else 
+                    return state;
         }
     }
 }
 
-const initialState = new UndoState<GameState>(gamePositionReducer());
+const initialUndoState = new UndoState<GameState>(gamePositionReducer());
+const initialState = new MainState(initialUndoState, initialPopupState);
 
-export const GameStateContext : React.Context<UndoState<GameState>> = createContext(initialState);
+export const GameStateContext : React.Context<MainState> = createContext(initialState);
+
+const mainReducer = CombineReducers({
+    gamePosition: undoReducer<GameState, GameAction>(gamePositionReducer),
+    popup: PopupReducer,
+});
 
 function GameStateProvider({children} : {children : ReactNode}) {
 
-    const [state, dispatch] = useReducer(undoReducer<GameState, GameAction>(gamePositionReducer), initialState);
+    const [state, dispatch] = useReducer(mainReducer, initialState);
 
     const moveTile = (tileOffset : number) => dispatch(new GameAction('move-tile', tileOffset));
     const moveLane = (laneOffset : number) => dispatch(new GameAction('move-lane', undefined, laneOffset));
     const defineCharacter = (character : GameCharacter) => dispatch(new GameAction('define-character', undefined, undefined, character));
     const toggleHoldingItem = () => dispatch(new GameAction('toggle-holding-item'));
-    const toggleChapterHistory = () => dispatch(new GameAction('toggle-chapter-history'));
     const setLife = (lifeTotal : number) => dispatch(new GameAction('set-life', undefined, undefined, undefined, undefined, lifeTotal));
     const undo = () => dispatch(new GameAction('undo'));
     const redo = () => dispatch(new GameAction('redo'));
+    const updatePopup = (content : PopupContent) => dispatch({type: 'update-popup', content});
 
     return <GameStateContext.Provider value={{
         ...state, 
@@ -141,10 +183,10 @@ function GameStateProvider({children} : {children : ReactNode}) {
         moveLane, 
         defineCharacter, 
         toggleHoldingItem, 
-        toggleChapterHistory, 
         setLife, 
         undo, 
-        redo
+        redo,
+        updatePopup
     }}>
         {children}
     </GameStateContext.Provider>

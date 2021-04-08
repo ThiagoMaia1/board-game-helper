@@ -28,5 +28,7 @@ const styles = StyleSheet.create({
         padding: 5,
         alignItems: 'center',
         justifyContent: 'center',
+        maxWidth: '100%',
+        maxHeight: '100%',
     },
 });

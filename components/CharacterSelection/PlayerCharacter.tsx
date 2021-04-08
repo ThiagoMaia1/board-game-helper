@@ -6,7 +6,7 @@ import CharacterTile from './CharacterTile';
 
 function PlayerCharacter() {
 
-    const { toggleHoldingItem, present: {holdingItem, character} } = useContext(GameStateContext);
+    const { toggleHoldingItem, gamePosition: {present: {holdingItem, character}}} = useContext(GameStateContext);
     const { height, width } = useWindowDimensions();
     const isVertical = height > width;
 
