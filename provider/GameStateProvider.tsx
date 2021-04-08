@@ -80,8 +80,10 @@ function gamePositionReducer(state : GameState = initialGameState, action ?: Gam
             return {...state, lane: state.lane + action.laneOffset};
         case 'define-character':
             return {...state, character: action.character as GameCharacter};
-        case 'toggle-holding-item':
-            return {...state, holdingItem: !state.holdingItem};
+        case 'toggle-holding-item': {
+            let life = state.life + (state.holdingItem ? 0 : state.character.exclusiveItem.improvements.life);
+            return {...state, holdingItem: !state.holdingItem, life};
+        }
         case 'toggle-chapter-history':
             return {...state, chapterHistoryIsVisible: !state.chapterHistoryIsVisible};
         case 'set-life':

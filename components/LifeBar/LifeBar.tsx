@@ -4,19 +4,23 @@ import { mapFixedNumberArray } from '../../constants/functions';
 import { GameStateContext, baseLife } from '../../provider/GameStateProvider';
 import LifeUnit from './LifeUnit';
 
-function LifeBar({charBonusLifeUnits = 0}) {
+function LifeBar() {
 
-    let {gamePosition: {present: {life}}, setLife} = useContext(GameStateContext);
+    let {gamePosition: {present: {life, holdingItem, character}}, setLife} = useContext(GameStateContext);
+    let bonusLife = holdingItem 
+                    ? character.exclusiveItem.improvements.life
+                    : 0;
 
     return (
         <View style={styles.container}>
             {mapFixedNumberArray<JSX.Element>(
-                baseLife + charBonusLifeUnits, 
+                baseLife + bonusLife, 
                 i => <LifeUnit key={i} 
-                        isActive={i < life} 
-                        onPress={() => setLife(i+1)}
-                        isBonus={i > baseLife - 1}
-                     />
+                    isActive={i < life} 
+                    onPress={() => setLife(i+1)}
+                    isBonus={i > baseLife - 1}
+                    widthFactor={baseLife/(bonusLife + baseLife)}
+                />
             )}
         </View>
     )

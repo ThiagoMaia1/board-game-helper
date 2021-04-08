@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { ImageBackground, StyleSheet, View } from 'react-native';
+import { ImageBackground, SafeAreaView, StyleSheet, View } from 'react-native';
 import { GameStateContext } from '../../provider/GameStateProvider';
 import CharacterSelection from '../CharacterSelection/CharacterSelection';
 import MainPage from '../MainPage/MainPage';
@@ -11,16 +11,17 @@ export default function Navigator() {
 
   return (
         <ImageBackground source={require('../../assets/WoodTexture.png')} 
-                         resizeMode={'repeat'} 
-                         style={{width: '100%', height: '100%'}}
+                        //  resizeMode={'repeat'} 
+                         imageStyle={{resizeMode: 'cover'}}
+                         style={{width: '100%', height: '100%', flex: 1}}
         >
-            <View style={styles.container}>
-              <Popup/>
-              {!character 
-                  ? <CharacterSelection/>
-                  : <MainPage/> 
+          <View style={styles.container}>
+            <Popup/>
+            {!character 
+                ? <CharacterSelection/>
+                : <MainPage/> 
               }
-            </View>
+          </View>
         </ImageBackground>
     );
 }

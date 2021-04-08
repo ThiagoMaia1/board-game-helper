@@ -16,8 +16,9 @@ function PlayerCharacter() {
                 <CharacterTile character={character} holdingItem={holdingItem} includeLabel={false}/>
             </View>
             <View style={styles.buttonContainer}>
-                <CustomButton label={holdingItem ? 'Usar Item' : 'Guardar Item'} 
-                            onPress={toggleHoldingItem}
+                <CustomButton label={holdingItem ? 'Usar\nItem' : 'Guardar\nItem'} 
+                              onPress={toggleHoldingItem}
+                              style={{minWidth: 110}}
                 />
             </View>
         </View>
@@ -33,7 +34,8 @@ const styles = StyleSheet.create({
         marginRight: 20,
         alignItems: 'center',
         alignContent: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        maxHeight: 175,
     },
     buttonContainer: {
         padding: 5,
